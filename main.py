@@ -4,10 +4,6 @@ import pywhatkit
 import datetime
 import wikipedia
 
-# We import our "speech recognition" module we installed
-# Then we create a "recognizer", so we can recognize our voice
-# also don't forget to always install pipwin, then install pyaudio with "pipwin install pyaudio" to avoid errors
-
 listener = sr.Recognizer()
 engine = pyttsx3.init()
 
@@ -54,14 +50,8 @@ def run_jarvis():
             whatInfo = wikipedia.summary(searchUp, 1)
             print(whatInfo)
             talk(whatInfo)
-    elif 'should' in command:
-        if 'i' in command:
-            searchUp = 'Should I pay my taxes??'
-            pywhatkit.search(searchUp)
-        if 'you' in command:
-            searchUp = 'Should I pay my taxes???'
     elif 'search up' in command:
-        searchUp = command
+        searchUp = command.replace('what is' , '')
         pywhatkit.search(searchUp)
 
 
